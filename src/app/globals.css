@@ -1,3 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/* 
+  Le decimos a Tailwind v4 que busque clases en todos los archivos .tsx
+  tanto en la carpeta de la app como en la nueva de componentes.
+*/
+@source "../app/**/*.{ts,tsx}";
+@source "../components/**/*.{ts,tsx}";
