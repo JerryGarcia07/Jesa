@@ -3,16 +3,42 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [hoverLogo, setHoverLogo] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  // Obtenemos la ruta actual en la que se encuentra el usuario (ej: "/", "/catalogo")
+  const pathname = usePathname();
+
+  // Función para determinar las clases de color dependiendo de si está activo o no
+  const getLinkClasses = (path: string) => {
+    const baseClasses =
+      "transition-all duration-300 hover:-translate-y-1 hover:scale-105";
+    if (pathname === path) {
+      // Si está activo: Azul fijo
+      return `${baseClasses} text-[#0088cc] font-bold`;
+    } else {
+      // Si no está activo: Gris, pero se pone azul al pasar el mouse
+      return `${baseClasses} text-gray-700 hover:text-[#0088cc]`;
+    }
+  };
+
+  const getMobileLinkClasses = (path: string) => {
+    const baseClasses = "transition-transform hover:scale-110";
+    if (pathname === path) {
+      return `${baseClasses} text-[#0088cc] font-black`;
+    } else {
+      return `${baseClasses} text-gray-800`;
+    }
+  };
+
   return (
     <>
       {/* 1. BARRA DE NAVEGACIÓN SUPERIOR */}
-      <nav className="flex items-center justify-center md:justify-between px-8 py-4 bg-white shadow-sm relative z-30">
-        {/* LOGO: Centrado en móvil (justify-center arriba), a la izquierda en PC */}
+      <nav className="max-w-7xl mx-auto px-8 py-4 flex items-center justify-center md:justify-between w-full">
+        {/* LOGO */}
         <Link
           href="/"
           className="cursor-pointer"
@@ -28,36 +54,29 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* MENÚ DE ESCRITORIO: Oculto en móvil, visible en pantallas medianas (md:flex) */}
+        {/* MENÚ DE ESCRITORIO */}
         <div className="hidden md:flex gap-8 font-semibold text-[15px]">
-          <Link
-            href="/"
-            className="text-[#0088cc] transition-all duration-300 hover:text-blue-800 hover:-translate-y-1 hover:scale-105"
-          >
+          <Link href="/" className={getLinkClasses("/")}>
             Inicio
           </Link>
-          <Link
-            href="/catalogo"
-            className="text-gray-700 transition-all duration-300 hover:text-[#0088cc] hover:-translate-y-1 hover:scale-105"
-          >
+          <Link href="/catalogo" className={getLinkClasses("/catalogo")}>
             Catálogo
           </Link>
           <Link
             href="/sobre-nosotros"
-            className="text-gray-700 transition-all duration-300 hover:text-[#0088cc] hover:-translate-y-1 hover:scale-105"
+            className={getLinkClasses("/sobre-nosotros")}
           >
             Sobre Nosotros
           </Link>
         </div>
       </nav>
 
-      {/* 2. BURBUJA FLOTANTE (Solo visible en móvil) */}
+      {/* 2. BURBUJA FLOTANTE (Móvil) */}
       <button
         onClick={() => setIsMenuOpen(true)}
         className="md:hidden fixed bottom-6 right-6 z-40 bg-[#0088cc] text-white p-4 rounded-full shadow-lg transition-transform duration-300 hover:scale-110 active:scale-95"
         aria-label="Abrir menú"
       >
-        {/* Ícono de Hamburguesa (SVG) */}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -74,13 +93,12 @@ export default function Navbar() {
         </svg>
       </button>
 
-      {/* 3. MENÚ PANTALLA COMPLETA MÓVIL (Animación desde la izquierda) */}
+      {/* 3. MENÚ PANTALLA COMPLETA MÓVIL */}
       <div
         className={`fixed inset-0 bg-white z-50 flex flex-col items-center justify-center transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] md:hidden ${
           isMenuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        {/* Botón para cerrar */}
         <button
           onClick={() => setIsMenuOpen(false)}
           className="absolute top-6 right-6 p-2 text-gray-500 hover:text-black transition-colors"
@@ -102,26 +120,25 @@ export default function Navbar() {
           </svg>
         </button>
 
-        {/* Enlaces Móviles (Más grandes para fácil lectura) */}
         <div className="flex flex-col items-center gap-8 text-2xl font-bold">
           <Link
             href="/"
             onClick={() => setIsMenuOpen(false)}
-            className="text-[#0088cc] transition-transform hover:scale-110"
+            className={getMobileLinkClasses("/")}
           >
             Inicio
           </Link>
           <Link
             href="/catalogo"
             onClick={() => setIsMenuOpen(false)}
-            className="text-gray-800 transition-transform hover:scale-110"
+            className={getMobileLinkClasses("/catalogo")}
           >
             Catálogo
           </Link>
           <Link
             href="/sobre-nosotros"
             onClick={() => setIsMenuOpen(false)}
-            className="text-gray-800 transition-transform hover:scale-110"
+            className={getMobileLinkClasses("/sobre-nosotros")}
           >
             Sobre Nosotros
           </Link>
