@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Footer() {
   // Obtenemos el año actual automáticamente para el copyright
-  const currentYear = new Date().getFullYear();
+  // const currentYear = new Date().getFullYear();
 
   return (
     <footer className="w-full mt-auto">
@@ -127,7 +127,7 @@ export default function Footer() {
 
       {/* 2. BARRA INFERIOR DE DERECHOS DE AUTOR */}
       <div className="bg-[#1a1a1a] text-gray-400 py-4 px-6 text-center text-xs tracking-wide">
-        © {currentYear} JESA SOLUTIONS. Todos los derechos reservados.
+        ©2026 JESA SOLUTIONS. Todos los derechos reservados.
       </div>
     </footer>
   );

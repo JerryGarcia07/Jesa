@@ -37,44 +37,47 @@ export default function Navbar() {
   return (
     <>
       {/* 1. BARRA DE NAVEGACIÓN SUPERIOR */}
-      <nav className="max-w-7xl mx-auto px-8 py-4 flex items-center justify-center md:justify-between w-full">
-        {/* LOGO */}
-        <Link
-          href="/"
-          className="cursor-pointer"
-          onMouseEnter={() => setHoverLogo(true)}
-          onMouseLeave={() => setHoverLogo(false)}
-        >
-          <Image
-            src={hoverLogo ? "/Logo.webp" : "/Logo.webp"}
-            alt="JESA Solutions Logo"
-            width={180}
-            height={45}
-            className="object-contain transition-all duration-300 hover:scale-105"
-          />
-        </Link>
 
-        {/* MENÚ DE ESCRITORIO */}
-        <div className="hidden md:flex gap-8 font-semibold text-[15px]">
-          <Link href="/" className={getLinkClasses("/")}>
-            Inicio
-          </Link>
-          <Link href="/catalogo" className={getLinkClasses("/catalogo")}>
-            Catálogo
-          </Link>
+      <nav className="flex items-center justify-center md:justify-between px-8 py-4 bg-white shadow-sm sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-8 py-4 flex items-center justify-center md:justify-between w-full ">
           <Link
-            href="/sobre-nosotros"
-            className={getLinkClasses("/sobre-nosotros")}
+            href="/"
+            className="cursor-pointer"
+            onMouseEnter={() => setHoverLogo(true)}
+            onMouseLeave={() => setHoverLogo(false)}
           >
-            Sobre Nosotros
+            <Image
+              src={hoverLogo ? "/Logo.webp" : "/Logo.webp"}
+              alt="JESA Solutions Logo"
+              width={180}
+              height={45}
+              className="object-contain transition-all duration-300 hover:scale-105"
+            />
           </Link>
+
+          {/* MENÚ DE ESCRITORIO */}
+          <div className="hidden md:flex gap-8 font-semibold text-[15px]">
+            <Link href="/" className={getLinkClasses("/")}>
+              Inicio
+            </Link>
+            <Link href="/catalogo" className={getLinkClasses("/catalogo")}>
+              Catálogo
+            </Link>
+            <Link
+              href="/sobre-nosotros"
+              className={getLinkClasses("/sobre-nosotros")}
+            >
+              Sobre Nosotros
+            </Link>
+          </div>
         </div>
+        {/* LOGO */}
       </nav>
 
       {/* 2. BURBUJA FLOTANTE (Móvil) */}
       <button
         onClick={() => setIsMenuOpen(true)}
-        className="md:hidden fixed bottom-6 right-6 z-40 bg-[#0088cc] text-white p-4 rounded-full shadow-lg transition-transform duration-300 hover:scale-110 active:scale-95"
+        className="md:hidden fixed bottom-6 right-6 z-50 bg-[#0088cc] text-white p-4 rounded-full shadow-lg transition-transform duration-300 hover:scale-110 active:scale-95"
         aria-label="Abrir menú"
       >
         <svg
