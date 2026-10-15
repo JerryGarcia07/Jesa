@@ -13,15 +13,23 @@ export default function Home() {
       <Hero />
       <NuevosProductos />
       <Marcas />
-      {/* Separador visual opcional (como los banners de soporte técnico de tu diseño) */}
-      <div className="max-w-7xl mx-auto w-full px-6 lg:px-8 py-4">
-        <div className="w-full h-24 bg-blue-900 rounded-xl flex items-center justify-center text-white text-xl font-bold opacity-80">
-          Banner Promocional Soporte Técnico
-        </div>
-      </div>
+      {/* 2. Reemplazamos el primer cuadro azul por el Banner Real */}
+      <BannerPromocional
+        imgDesktop="/banner-pc.webp" // Cambia esto por el nombre exacto de tu imagen para PC
+        imgMobile="/banner-pc.webp" // Cambia esto por el nombre de tu imagen para celular
+        enlace="https://wa.me/5491123456789" // Pon aquí el link de WhatsApp u otra página
+        alt="Soporte Técnico Profesional"
+      />
 
       <MasVendidos />
       <Ofertas />
+      {/* 3. Reemplazamos el segundo cuadro azul (si es el mismo banner, puedes repetir el código o cambiar las imágenes) */}
+      <BannerPromocional
+        imgDesktop="/banner-pc.webp"
+        imgMobile="/banner-pc.webp"
+        enlace="https://wa.me/5491123456789"
+        alt="Soporte Técnico Profesional"
+      />
     </main>
   );
 }

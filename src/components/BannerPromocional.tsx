@@ -1,7 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
 
-// Definimos qué datos necesita recibir nuestro banner
 interface BannerProps {
   imgDesktop: string;
   imgMobile: string;
@@ -16,30 +14,28 @@ export default function BannerPromocional({
   alt,
 }: BannerProps) {
   return (
-    // Contenedor que respeta exactamente los mismos márgenes que el resto de tu web
     <div className="max-w-7xl mx-auto w-full px-6 lg:px-8 py-6">
       <Link
         href={enlace}
         className="block w-full overflow-hidden rounded-xl hover:shadow-lg transition-all duration-300 hover:opacity-95"
       >
-        {/* 1. IMAGEN PARA MÓVIL (Se oculta en PC con "md:hidden") */}
-        <div className="block md:hidden w-full relative">
-          {/* Usa la etiqueta img regular aquí para que se adapte automáticamente al alto de tu diseño móvil sin pedir proporciones exactas */}
+        {/* 
+          El elemento <picture> obliga al navegador a elegir UNA SOLA imagen 
+          antes de descargarla, ahorrando megas en dispositivos móviles.
+        */}
+        <picture>
+          {/* Si la pantalla mide 768px o más (PC o Tablet), descarga y usa la imagen de Desktop */}
+          <source media="(min-width: 768px)" srcSet={imgDesktop} />
+
+          {/* Si es pantalla pequeña (Móvil), ignora la de arriba y solo descarga esta */}
           <img
             src={imgMobile}
-            alt={`${alt} Móvil`}
+            alt={alt}
+            /* loading="lazy" hace que la imagen no se descargue hasta que el usuario baje haciendo scroll, ahorrando aún más datos */
+            loading="lazy"
             className="w-full h-auto object-cover rounded-xl"
           />
-        </div>
-
-        {/* 2. IMAGEN PARA PC (Se oculta en móvil con "hidden" y se muestra en PC con "md:block") */}
-        <div className="hidden md:block w-full relative">
-          <img
-            src={imgDesktop}
-            alt={`${alt} PC`}
-            className="w-full h-auto object-cover rounded-xl"
-          />
-        </div>
+        </picture>
       </Link>
     </div>
   );

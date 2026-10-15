@@ -77,7 +77,7 @@ export default function Navbar() {
       {/* 2. BURBUJA FLOTANTE (Móvil) */}
       <button
         onClick={() => setIsMenuOpen(true)}
-        className="md:hidden fixed bottom-6 right-6 z-50 bg-[#0088cc] text-white p-4 rounded-full shadow-lg transition-transform duration-300 hover:scale-110 active:scale-95"
+        className="md:hidden fixed bottom-6 right-6 z-50 bg-gradient-to-r from-[#24A3DD] to-[#00375B] text-white p-4 rounded-full shadow-lg transition-transform duration-300 hover:scale-110 active:scale-95"
         aria-label="Abrir menú"
       >
         <svg
@@ -86,7 +86,7 @@ export default function Navbar() {
           viewBox="0 0 24 24"
           strokeWidth={2}
           stroke="currentColor"
-          className="w-6 h-6"
+          className="w-8 h-8"
         >
           <path
             strokeLinecap="round"
@@ -113,7 +113,7 @@ export default function Navbar() {
             viewBox="0 0 24 24"
             strokeWidth={2}
             stroke="currentColor"
-            className="w-8 h-8"
+            className="w-9 h-9"
           >
             <path
               strokeLinecap="round"

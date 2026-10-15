@@ -126,7 +126,7 @@ export default function Footer() {
       </div>
 
       {/* 2. BARRA INFERIOR DE DERECHOS DE AUTOR */}
-      <div className="bg-[#1a1a1a] text-gray-400 py-4 px-6 text-center text-xs tracking-wide">
+      <div className="bg-[#1a1a1a] text-gray-400 py-2 px-6 md:py-4 text-center text-xs tracking-wide">
         ©2026 JESA SOLUTIONS. Todos los derechos reservados.
       </div>
     </footer>
