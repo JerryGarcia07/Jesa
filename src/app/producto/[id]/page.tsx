@@ -1,17 +1,19 @@
-export default function ProductoDetalle({
-  params,
-}: {
-  params: { id: string };
-}) {
+import { Suspense } from "react";
+
+export async function generateStaticParams() {
+  return [{ id: "1" }, { id: "2" }, { id: "3" }];
+}
+
+export default function ProductoPage({ params }: { params: { id: string } }) {
   return (
-    <main className="p-8 max-w-4xl mx-auto text-center mt-10">
-      <h1 className="text-2xl font-bold">Detalles del producto</h1>
-      <p className="mt-4 text-gray-600">
-        Estás viendo el producto con el ID:{" "}
-        <span className="font-mono bg-gray-200 p-1 rounded text-black">
-          {params.id}
-        </span>
-      </p>
+    <main>
+      <h1>Cargando estructura...</h1>
+
+      {/* El Suspense aísla cualquier error de cliente que esté oculto en tus componentes */}
+      <Suspense fallback={<p>Cargando producto...</p>}>
+        {/* REEMPLAZA ESTO CON EL CONTENIDO O COMPONENTES REALES DE TU PÁGINA */}
+        <div>Contenido de tu producto {params.id}</div>
+      </Suspense>
     </main>
   );
 }
